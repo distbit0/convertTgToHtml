@@ -1,4 +1,3 @@
-import pandas as pd
 import time
 from os import path
 import json
@@ -52,7 +51,7 @@ def createHtmlFromCSV(convo):
             replyToId = message["reply_to_message_id"]
             replyToMessage = getMsgText([m for m in convo["messages"] if m["id"] == replyToId][0])
             replyToText = "  [[Reply to:]] " + replyToMessage
-        html += "<p>" + message["from"] + ": " + msgText + replyToText + "</p><br>"
+        html += "<p>" + message["from"] + ": " + msgText + replyToText + "</p>"
     html += """
     </table>
     </body>

@@ -50,8 +50,8 @@ def createHtmlFromCSV(convo):
         if "reply_to_message_id" in message:
             replyToId = message["reply_to_message_id"]
             replyToMessage = getMsgText([m for m in convo["messages"] if m["id"] == replyToId][0])
-            replyToText = "  [[Reply to:]] " + replyToMessage
-        html += "<p>" + message["from"] + ": " + msgText + replyToText + "</p>"
+            replyToText = " [[Reply to:]] " + replyToMessage
+        html += "<p>" + message["from"] + ": " + replyToText + " [[MSG:]] " + msgText + "</p>"
     html += """
     </table>
     </body>

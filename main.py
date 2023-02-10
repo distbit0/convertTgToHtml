@@ -52,7 +52,6 @@ def createHtmlFromCSV(convo):
             replyToId = message["reply_to_message_id"]
             replyToMessage = getMsgText([m for m in convo["messages"] if m["id"] == replyToId][0])
             replyToText = "  [[Reply to:]] " + replyToMessage
-        print(message["from"], msgText, replyToText)
         html += "<p>" + message["from"] + ": " + msgText + replyToText + "</p><br>"
     html += """
     </table>
@@ -67,7 +66,6 @@ if __name__ == "__main__":
     inputDir, outputDir = config["inputDir"], config["outputDir"]
     chatExports = glob.glob(inputDir + "/ChatExport*/result.json")
     for jsonFilePath in chatExports:
-        print(jsonFilePath)
         convo = json.loads(open(jsonFilePath).read())
         convoName = convo["name"] + str(convo["id"])
         htmlFilePath = outputDir + convoName + ".html"
@@ -81,6 +79,6 @@ if __name__ == "__main__":
             pyperclip.copy(urlToOpen)
         else:
             urlToOpen = htmlFilePath
-        #os.remove(jsonFilePath)
+        os.remove(jsonFilePath)
         subprocess.run(["xdg-open", urlToOpen])
         

@@ -38,6 +38,7 @@ def createHtmlFromCSV(convo):
     html = """
     <html>
     <head>
+    <title>""" + convo["name"] + """</title>
     <style>
     </style>
     </head>
@@ -48,7 +49,7 @@ def createHtmlFromCSV(convo):
         msgText = getMsgText(message)
         if "from" not in message:
             continue
-
+        
         if "reply_to_message_id" in message:
             replyToId = message["reply_to_message_id"]
             replyToMessage = [m for m in convo["messages"] if m["id"] == replyToId]
